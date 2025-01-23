@@ -28,8 +28,12 @@ export const Colors = {
 
 const theme = createTheme({
   palette: {
-    primary: Colors.primary,
-    secondary: Colors.secondary,
+    primary: {
+      main: Colors.primary,
+    },
+    secondary: {
+      main: Colors.secondary,
+    },
   },
 
   //   components: {

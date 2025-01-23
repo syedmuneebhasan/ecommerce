@@ -5,6 +5,14 @@ import { AppBarDesktop } from "./AppBarDesktop";
 
 export const AppBar = () => {
   const theme = createTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
-  return <div>{matches ? <AppBarMobile /> : <AppBarDesktop />}</div>;
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  return (
+    <div>
+      {matches ? (
+        <AppBarMobile matches={matches} />
+      ) : (
+        <AppBarDesktop matches={matches} />
+      )}
+    </div>
+  );
 };
