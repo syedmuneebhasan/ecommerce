@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MessageText, PromotionsContainer } from "../../styles/promotions";
-import { Box, Slide } from "@mui/material";
+import { Slide } from "@mui/material";
 
 const messages = [
   "Big Savings on Domestic Appliances",
@@ -8,25 +8,39 @@ const messages = [
   "Galaxy S25 Ultra - Ultimate Saviour",
 ];
 export const Promotions = () => {
+  const [show, setShow] = useState(true);
   const [messageIndex, setMessageIndex] = useState(0);
   const containerRef = useRef(null);
 
-  const handlePromotions = () => {
-    if (messageIndex === messages.length - 1) {
-      setMessageIndex(0);
-    } else {
-      setMessageIndex(messageIndex + 1);
-    }
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(false);
+    }, 3500);
+    const interval = setInterval(() => {
+      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 3500);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <PromotionsContainer ref={containerRef}>
-        <Slide direction="left" in={true}>
+        <Slide
+          direction={show ? "left" : "right"}
+          in={show}
+          timeout={{
+            enter: 500,
+            exit: 200,
+          }}
+        >
           <MessageText variant="h2">{messages[messageIndex]}</MessageText>
         </Slide>
       </PromotionsContainer>
-
-      <button onClick={handlePromotions}>slide</button>
     </>
   );
 };
