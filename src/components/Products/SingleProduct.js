@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Product,
+  ProductActionButton,
   ProductActionsWrapper,
   ProductAddToCart,
   ProductFavButton,
@@ -8,27 +9,31 @@ import {
 } from "../../styles/products";
 import ProductMeta from "./ProductMeta";
 import { Stack } from "@mui/material";
-import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import FitScreenIcon from "@mui/icons-material/FitScreen";
 
 const SingleProduct = ({ product, matches }) => {
   return (
     <>
       <Product>
         <ProductImage src={product.image} />
-        <ProductMeta product={product} />
+        <ProductMeta product={product} matches={matches} />
         <ProductActionsWrapper>
           <Stack direction={"row"}>
-            <ProductFavButton>
-              <ShareIcon />
-            </ProductFavButton>
-            <ProductFavButton>
+            <ProductFavButton isFav={0}>
               <FavoriteIcon />
             </ProductFavButton>
+            <ProductActionButton>
+              <ShareIcon color="primary" />
+            </ProductActionButton>
+            <ProductActionButton>
+              <FitScreenIcon color="primary" />
+            </ProductActionButton>
           </Stack>
         </ProductActionsWrapper>
-        <ProductAddToCart>Add to cart</ProductAddToCart>
       </Product>
+      <ProductAddToCart variant="contained">Add to cart</ProductAddToCart>
     </>
   );
 };

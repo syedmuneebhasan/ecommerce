@@ -44,7 +44,7 @@ export const ProductAddToCart = styled(Button)(({ show, theme }) => ({
   fontSize: "12px",
   [theme.breakpoints.up("md")]: {
     position: "absolute",
-    bottom: "5%",
+    bottom: "28%",
     width: "280px",
     padding: "10px 5px",
   },
@@ -64,6 +64,6 @@ export const ProductActionsWrapper = styled(Box)(({ show, theme }) => ({
     display: show ? "block" : "none",
     position: "absolute",
     right: 0,
-    top: "25%",
+    top: "20%",
   },
 }));

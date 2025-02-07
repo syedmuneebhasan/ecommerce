@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Product,
+  ProductActionButton,
   ProductActionsWrapper,
   ProductAddToCart,
   ProductFavButton,
@@ -10,24 +11,33 @@ import ProductMeta from "./ProductMeta";
 import { Stack } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FitScreenIcon from "@mui/icons-material/FitScreen";
 
 const SingleProductDesktop = ({ product, matches }) => {
+  const [showOptions, setShowOptions] = useState(false);
   return (
     <>
-      <Product>
+      <Product
+        onMouseEnter={() => setShowOptions(true)}
+        onMouseLeave={() => setShowOptions(false)}
+      >
         <ProductImage src={product.image} />
         <ProductMeta product={product} />
-        <ProductActionsWrapper>
-          <Stack direction={"row"}>
-            <ProductFavButton>
-              <ShareIcon />
-            </ProductFavButton>
-            <ProductFavButton>
-              <FavoriteIcon />
-            </ProductFavButton>
+        <ProductFavButton isFav={0}>
+          <FavoriteIcon />
+        </ProductFavButton>
+
+        {showOptions && <ProductAddToCart>Add to cart</ProductAddToCart>}
+        <ProductActionsWrapper show={showOptions}>
+          <Stack direction={"column"}>
+            <ProductActionButton>
+              <ShareIcon color="primary" />
+            </ProductActionButton>
+            <ProductActionButton>
+              <FitScreenIcon color="primary" />
+            </ProductActionButton>
           </Stack>
         </ProductActionsWrapper>
-        <ProductAddToCart>Add to cart</ProductAddToCart>
       </Product>
     </>
   );

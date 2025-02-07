@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Colors } from "../theme";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 // xs -> 0px
 // sm -> 600px
@@ -59,4 +59,12 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
     letterSpacing: 1.15,
     marginBottom: "1.5em",
   },
+}));
+
+export const BannerButton = styled(Button)(() => ({
+  background: Colors.primary,
+  width: "200px",
+  padding: "10px 0px",
+  color: Colors.white,
+  borderRadius: "10px",
 }));

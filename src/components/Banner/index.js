@@ -2,6 +2,7 @@ import React from "react";
 import { Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import {
+  BannerButton,
   BannerContainer,
   BannerContent,
   BannerDescription,
@@ -22,6 +23,7 @@ export const Banner = () => {
           Lorem ipsum dolor sit amet consectetur adipiscing elit suscipit
           consectetur adipiscing elit
         </BannerDescription>
+        <BannerButton>Show Now</BannerButton>
       </BannerContent>
     </BannerContainer>
   );
