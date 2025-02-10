@@ -36,12 +36,23 @@ const theme = createTheme({
     },
   },
 
-  //   components: {
-  //     MuiButton: {
-  //       disableRipple: true,
-  //       disableElevation: true,
-  //     },
-  //   },
+  components: {
+    MuiButton: {
+      disableRipple: true,
+      disableElevation: true,
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          width: 250,
+          background: Colors.primary,
+          color: Colors.secondary,
+          borderRadius: "0px 100px 0px 0px",
+          borderRight: `1px solid ${Colors.primary}`,
+        },
+      },
+    },
+  },
 });
 
 export default theme;

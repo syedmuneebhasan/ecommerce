@@ -14,9 +14,7 @@ export const Products = () => {
       item
       key={product.id}
       display="flex"
-      xs={2}
-      sm={4}
-      md={4}
+      size={{ xs: 12, sm: 6, md: 4 }}
       flexDirection={"column"}
       alignItems={"center"}
     >
@@ -37,7 +35,6 @@ export const Products = () => {
         }}
         justifyContent={"center"}
         sx={{ margin: "0px 4px 10px 4px" }}
-        size={{ xs: 4, sm: 8, md: 12 }}
       >
         {renderProducts}
       </Grid>
