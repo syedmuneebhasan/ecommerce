@@ -7,7 +7,7 @@ import Actions from "./Actions";
 import { useUIContext } from "../../context/ui";
 
 export const AppBarMobile = ({ matches }) => {
-  const { setDrawerOpen } = useUIContext();
+  const { setDrawerOpen, setShowSearchBox } = useUIContext();
   return (
     <AppBarContainer>
       <IconButton onClick={() => setDrawerOpen(true)}>
@@ -16,7 +16,7 @@ export const AppBarMobile = ({ matches }) => {
       <AppBarHeader variant="h4" textAlign={"center"}>
         My Project
       </AppBarHeader>
-      <IconButton>
+      <IconButton onClick={() => setShowSearchBox(true)}>
         <SearchIcon />
       </IconButton>
       <Actions matches={matches} />

@@ -12,11 +12,20 @@ import { Stack } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import FitScreenIcon from "@mui/icons-material/FitScreen";
+import { useNavigate } from "react-router-dom";
 
 const SingleProduct = ({ product, matches }) => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Product>
+      <Product
+        onClick={() =>
+          navigate(`/product/${product.id}`, {
+            product: product,
+          })
+        }
+      >
         <ProductImage src={product.image} />
         <ProductMeta product={product} matches={matches} />
         <ProductActionsWrapper>
