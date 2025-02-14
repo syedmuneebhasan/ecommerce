@@ -4,13 +4,17 @@ import {
   ActionIconsContainerMobile,
   MyList,
 } from "../../styles/appBar";
-import { Divider, ListItemButton, ListItemIcon } from "@mui/material";
+import { Badge, Divider, ListItemButton, ListItemIcon } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
 import { Colors } from "../../styles/theme";
+import { useUIContext } from "../../context/ui";
+import { useNavigate } from "react-router-dom";
 
 const Actions = ({ matches }) => {
+  const navigate = useNavigate();
+  const { cartLength } = useUIContext();
   const Component = matches
     ? ActionIconsContainerMobile
     : ActionIconsContainerDesktop;
@@ -24,8 +28,11 @@ const Actions = ({ matches }) => {
               justifyContent: "center",
               color: matches && Colors.secondary,
             }}
+            onClick={() => navigate("/cart")}
           >
-            <ShoppingCartIcon />
+            <Badge badgeContent={cartLength} color="secondary">
+              <ShoppingCartIcon />
+            </Badge>
           </ListItemIcon>
         </ListItemButton>
         <Divider orientation="vertical" flexItem />

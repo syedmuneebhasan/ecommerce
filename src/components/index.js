@@ -5,3 +5,5 @@ export * from "./Products";
 export * from "./Footer";
 export * from "./Search";
 export * from "./ProductDetail";
+export * from "./Cart";
+export * from "./ProductDetailCard";

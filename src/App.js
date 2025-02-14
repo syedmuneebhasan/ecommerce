@@ -4,6 +4,7 @@ import "./App.css";
 import {
   AppBar,
   Banner,
+  Cart,
   Footer,
   ProductDetail,
   Products,
@@ -39,6 +40,7 @@ function App() {
                 }
               />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </BrowserRouter>
         </UIProvider>

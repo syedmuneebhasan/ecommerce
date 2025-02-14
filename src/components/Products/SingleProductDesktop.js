@@ -12,14 +12,27 @@ import { Stack } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FitScreenIcon from "@mui/icons-material/FitScreen";
+import { useNavigate } from "react-router-dom";
+import { useUIContext } from "../../context/ui";
 
 const SingleProductDesktop = ({ product, matches }) => {
+  const navigate = useNavigate();
+  const { cartLength, setCartLength, cartItems, setCartItems } = useUIContext();
   const [showOptions, setShowOptions] = useState(false);
+
+  const isItemAddedToCart = cartItems.find((item) => item.id === product.id);
   return (
     <>
       <Product
         onMouseEnter={() => setShowOptions(true)}
         onMouseLeave={() => setShowOptions(false)}
+        onClick={() =>
+          navigate(`/product/${product.id}`, {
+            state: {
+              product: product,
+            },
+          })
+        }
       >
         <ProductImage src={product.image} />
         <ProductMeta product={product} />
@@ -27,7 +40,18 @@ const SingleProductDesktop = ({ product, matches }) => {
           <FavoriteIcon />
         </ProductFavButton>
 
-        {showOptions && <ProductAddToCart>Add to cart</ProductAddToCart>}
+        {showOptions && (
+          <ProductAddToCart
+            onClick={(e) => {
+              e.stopPropagation();
+              setCartLength(cartLength + 1);
+              setCartItems([...cartItems, product]);
+            }}
+            disabled={isItemAddedToCart}
+          >
+            {isItemAddedToCart ? "Added to Cart" : "Add To Cart"}
+          </ProductAddToCart>
+        )}
         <ProductActionsWrapper show={showOptions}>
           <Stack direction={"column"}>
             <ProductActionButton>
