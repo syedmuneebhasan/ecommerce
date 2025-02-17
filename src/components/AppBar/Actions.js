@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const Actions = ({ matches }) => {
   const navigate = useNavigate();
-  const { cartLength } = useUIContext();
+  const { cartLength, wishlistedItems } = useUIContext();
   const Component = matches
     ? ActionIconsContainerMobile
     : ActionIconsContainerDesktop;
@@ -43,8 +43,11 @@ const Actions = ({ matches }) => {
               justifyContent: "center",
               color: matches && Colors.secondary,
             }}
+            onClick={() => navigate("/wishlist")}
           >
-            <FavoriteIcon />
+            <Badge badgeContent={wishlistedItems.length} color="secondary">
+              <FavoriteIcon />
+            </Badge>
           </ListItemIcon>
         </ListItemButton>
         <Divider orientation="vertical" flexItem />

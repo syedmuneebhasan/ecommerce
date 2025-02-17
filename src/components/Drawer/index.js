@@ -11,8 +11,10 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { DrawerCloseButton } from "../../styles/drawer";
 import { useUIContext } from "../../context/ui";
+import { useNavigate } from "react-router-dom";
 
 const AppDrawer = () => {
+  const navigate = useNavigate();
   const { drawerOpen, setDrawerOpen } = useUIContext();
   return (
     <>
@@ -29,16 +31,13 @@ const AppDrawer = () => {
             <ListItemText>Home</ListItemText>
           </ListItemButton>
           <Divider />
-          <ListItemButton>
-            <ListItemText>Categories</ListItemText>
-          </ListItemButton>
           <Divider />
           <ListItemButton>
             <ListItemText>Products</ListItemText>
           </ListItemButton>
           <Divider />
-          <ListItemButton>
-            <ListItemText>About Us</ListItemText>
+          <ListItemButton onClick={() => navigate("/cart")}>
+            <ListItemText>My Cart</ListItemText>
           </ListItemButton>
           <Divider />
           <ListItemButton>

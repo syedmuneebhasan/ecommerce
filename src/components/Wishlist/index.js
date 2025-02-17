@@ -4,8 +4,8 @@ import { Box, Typography } from "@mui/material";
 import { ProductDetailCard } from "../ProductDetailCard";
 import { Colors } from "../../styles/theme";
 
-export const Cart = () => {
-  const { cartItems } = useUIContext();
+export const Wishlist = () => {
+  const { wishlistedItems } = useUIContext();
   return (
     <Box
       display={"flex"}
@@ -16,10 +16,12 @@ export const Cart = () => {
       gap={"1rem"}
     >
       <Typography variant="h2" sx={{ color: Colors.primary }}>
-        Your Cart
+        Your Wishlist
       </Typography>
-      {cartItems?.length === 0 && <Typography>Your cart is empty</Typography>}
-      {cartItems?.map((item) => (
+      {wishlistedItems?.length === 0 && (
+        <Typography>Your wishlist is empty</Typography>
+      )}
+      {wishlistedItems?.map((item) => (
         <ProductDetailCard product={item} />
       ))}
     </Box>

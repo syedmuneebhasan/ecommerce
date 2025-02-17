@@ -17,10 +17,21 @@ import { useUIContext } from "../../context/ui";
 
 const SingleProductDesktop = ({ product, matches }) => {
   const navigate = useNavigate();
-  const { cartLength, setCartLength, cartItems, setCartItems } = useUIContext();
+  const {
+    cartLength,
+    setCartLength,
+    cartItems,
+    setCartItems,
+    wishlistedItems,
+    setWishlistedItems,
+  } = useUIContext();
   const [showOptions, setShowOptions] = useState(false);
 
   const isItemAddedToCart = cartItems.find((item) => item.id === product.id);
+  const isItemAddedToWishlist = wishlistedItems.find(
+    (item) => item.id === product.id
+  );
+
   return (
     <>
       <Product
@@ -36,7 +47,14 @@ const SingleProductDesktop = ({ product, matches }) => {
       >
         <ProductImage src={product.image} />
         <ProductMeta product={product} />
-        <ProductFavButton isFav={0}>
+        <ProductFavButton
+          isFav={0}
+          onClick={(e) => {
+            e.stopPropagation();
+            setWishlistedItems([...wishlistedItems, product]);
+          }}
+          disabled={isItemAddedToWishlist}
+        >
           <FavoriteIcon />
         </ProductFavButton>
 

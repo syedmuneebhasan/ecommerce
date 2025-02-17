@@ -1,12 +1,12 @@
-import { Container, useMediaQuery } from "@mui/material";
+import { Box, Container, Typography, useMediaQuery } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useTheme } from "@mui/material/styles";
-import React from "react";
+import React, { forwardRef } from "react";
 import { products } from "../../data";
 import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 
-export const Products = () => {
+export const Products = forwardRef((props, ref) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const renderProducts = products.map((product) => (
@@ -26,7 +26,10 @@ export const Products = () => {
     </Grid>
   ));
   return (
-    <Container>
+    <Container ref={ref}>
+      <Box display="flex" justifyContent={"center"} p={4}>
+        <Typography variant="h4">Our Products</Typography>
+      </Box>
       <Grid
         container
         spacing={{
@@ -40,4 +43,4 @@ export const Products = () => {
       </Grid>
     </Container>
   );
-};
+});

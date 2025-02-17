@@ -7,15 +7,17 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { forwardRef } from "react";
 import { FooterTitle, SubscribeInput } from "../../styles/footer";
 import { Colors } from "../../styles/theme";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import SendIcon from "@mui/icons-material/Send";
+import { useNavigate } from "react-router-dom";
 
-export const Footer = () => {
+export const Footer = forwardRef((props, ref) => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -27,6 +29,7 @@ export const Footer = () => {
         pb: 12,
         fontSize: { xs: "12px", md: "14px" },
       }}
+      ref={ref}
     >
       <Grid2 container spacing={2} justifyContent={"center"}>
         <Grid2 item size={{ md: 6, lg: 4 }}>
@@ -80,7 +83,7 @@ export const Footer = () => {
                 Login
               </Typography>
             </ListItemText>
-            <ListItemText>
+            <ListItemText onClick={() => navigate("/cart")}>
               <Typography lineHeight={2} variant="caption2">
                 My Cart
               </Typography>
@@ -117,4 +120,4 @@ export const Footer = () => {
       </Grid2>
     </Box>
   );
-};
+});

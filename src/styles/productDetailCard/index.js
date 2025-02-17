@@ -7,13 +7,16 @@ export const ProductDetailCardImage = styled("img")(({ src }) => ({
   width: "200px",
 }));
 
-export const ProductCardContainer = styled(Box)(() => ({
+export const ProductCardContainer = styled(Box)(({ theme }) => ({
   border: "1px solid black",
   borderRadius: "10px",
   padding: "1rem",
   display: "flex",
   justifyContent: "center",
-
   alignItems: "center",
   gap: "5rem",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+    gap: "2rem",
+  },
 }));

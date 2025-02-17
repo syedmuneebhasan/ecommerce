@@ -17,8 +17,18 @@ import { useUIContext } from "../../context/ui";
 
 const SingleProduct = ({ product, matches }) => {
   const navigate = useNavigate();
-  const { cartLength, setCartLength, cartItems, setCartItems } = useUIContext();
+  const {
+    cartLength,
+    setCartLength,
+    cartItems,
+    setCartItems,
+    wishlistedItems,
+    setWishlistedItems,
+  } = useUIContext();
   const isItemAddedToCart = cartItems.find((item) => item.id === product.id);
+  const isItemAddedToWishlist = wishlistedItems.find(
+    (item) => item.id === product.id
+  );
 
   return (
     <>
@@ -35,7 +45,14 @@ const SingleProduct = ({ product, matches }) => {
         <ProductMeta product={product} matches={matches} />
         <ProductActionsWrapper>
           <Stack direction={"row"}>
-            <ProductFavButton isFav={0}>
+            <ProductFavButton
+              isFav={0}
+              onClick={(e) => {
+                e.stopPropagation();
+                setWishlistedItems([...wishlistedItems, product]);
+              }}
+              disabled={isItemAddedToWishlist}
+            >
               <FavoriteIcon />
             </ProductFavButton>
             <ProductActionButton>

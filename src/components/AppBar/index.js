@@ -3,7 +3,7 @@ import React from "react";
 import { AppBarMobile } from "./AppBarMobile";
 import { AppBarDesktop } from "./AppBarDesktop";
 
-export const AppBar = () => {
+export const AppBar = ({ productRef, contactRef }) => {
   const theme = createTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -11,7 +11,11 @@ export const AppBar = () => {
       {matches ? (
         <AppBarMobile matches={matches} />
       ) : (
-        <AppBarDesktop matches={matches} />
+        <AppBarDesktop
+          matches={matches}
+          productRef={productRef}
+          contactRef={contactRef}
+        />
       )}
     </div>
   );

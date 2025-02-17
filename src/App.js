@@ -10,12 +10,17 @@ import {
   Products,
   Promotions,
   SearchBox,
+  Wishlist,
 } from "./components";
 import theme from "./styles/theme";
 import AppDrawer from "./components/Drawer";
 import { UIProvider } from "./context/ui";
+import { useRef } from "react";
 
 function App() {
+  const productRef = useRef(null);
+  const contactRef = useRef(null);
+
   return (
     <Container maxWidth="xl">
       <ThemeProvider theme={theme}>
@@ -26,14 +31,11 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <AppBar />
+                    <AppBar productRef={productRef} contactRef={contactRef} />
                     <Banner />
                     <Promotions />
-                    <Box display="flex" justifyContent={"center"} p={4}>
-                      <Typography variant="h4">Our Products</Typography>
-                    </Box>
-                    <Products />
-                    <Footer />
+                    <Products ref={productRef} />
+                    <Footer ref={contactRef} />
                     <AppDrawer />
                     <SearchBox />
                   </>
@@ -41,6 +43,7 @@ function App() {
               />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
             </Routes>
           </BrowserRouter>
         </UIProvider>
